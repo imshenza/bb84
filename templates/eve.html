@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <h3>Eve — Interception Control</h3>
+  <p class="small-muted">Eve can intercept qubits in the quantum channel. Choose whether Eve intercepts and the per-qubit probability.</p>
+
+  <form method="post" action="{{ url_for('eve') }}">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="eve_enabled" name="eve_enabled">
+      <label class="form-check-label" for="eve_enabled">Enable Eve (intercept & resend)</label>
+    </div>
+
+    <div class="mt-3">
+      <label>Per-qubit intercept probability (0.0 - 1.0)</label>
+      <input class="form-control w-25" type="number" name="eve_prob" step="0.05" min="0" max="1" value="1.0">
+    </div>
+
+    <div class="mt-3">
+      <button class="btn btn-primary" type="submit">Apply & Continue → Bob</button>
+      <a class="btn btn-link" href="{{ url_for('alice') }}">Back</a>
+    </div>
+  </form>
+
+  <hr>
+  <h5>Alice prepared</h5>
+  <p><b>Bits:</b> {{ alice_bits }}</p>
+  <p><b>Bases:</b> {{ alice_bases }}</p>
+{% endblock %}

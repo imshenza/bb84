@@ -1,27 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>🧑‍🚀 Bob — Quantum Key Receiver</h2>
+  <h3>Bob — Measure Qubits</h3>
+  <p class="small-muted">Bob will pick random measurement bases and measure the qubits. We will show both the "No Eve" and "With Eve" outcomes for comparison.</p>
 
-{% if bob_bases %}
-    <h3>Results</h3>
-    <table>
-        <tr><th>Index</th><th>Alice Bit</th><th>Alice Basis</th><th>Bob Basis</th><th>Bob Result</th></tr>
-        {% for i in range(alice_bits|length) %}
-        <tr>
-            <td>{{ i+1 }}</td>
-            <td>{{ alice_bits[i] }}</td>
-            <td>{{ alice_bases[i] }}</td>
-            <td>{{ bob_bases[i] }}</td>
-            <td>{{ bob_results[i] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <h3>🧩 Secret Shared Key:</h3>
-    <p><b>{{ secret_key }}</b></p>
-    <a href="/">Restart</a>
-{% else %}
-    <form method="POST" action="/receive">
-        <button type="submit">Receive and Measure Qubits 🎯</button>
-    </form>
-{% endif %}
+  <form method="post" action="{{ url_for('bob') }}">
+    <button class="btn btn-success" type="submit">Measure & Compute Keys →</button>
+    <a class="btn btn-link" href="{{ url_for('eve') }}">Back to Eve</a>
+  </form>
 {% endblock %}

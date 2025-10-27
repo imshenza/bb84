@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h4>Alice — Send Encrypted Message (using agreed key)</h4>
+  <p><b>Agreed sifted key (Alice, no Eve):</b> {{ alice_key }}</p>
+  <p class="small">Encryption = Caesar shift by sum(key) % 26</p>
+
+  <form method="post" action="{{ url_for('message_send') }}">
+    <div class="mb-2">
+      <input class="form-control" type="text" name="plaintext" placeholder="Enter message to send" required>
+    </div>
+    <button class="btn btn-success">Encrypt & Send to Bob</button>
+    <a class="btn btn-link" href="{{ url_for('results') }}">Back to results</a>
+  </form>
+
+  {% if session.ciphertext %}
+    <hr>
+    <p><b>Last ciphertext sent:</b> {{ session.ciphertext }}</p>
+  {% endif %}
+{% endblock %}
