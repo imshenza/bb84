@@ -1,13 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-  <h4>Bob — Receive & Measure</h4>
-  <p class="small">Alice prepared the qubits. When you click <b>Measure</b>, Bob will choose random measurement bases and measure them. We will then show results for "no Eve" and "with Eve".</p>
+  <div class="d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card p-5 shadow-lg" style="width: 550px; background:#fff; border-top:5px solid #343d45;">
+      <h4 class="text-center mb-4" style="color:#343d45; font-weight:600;">
+        Bob — Receive & Measure
+      </h4>
 
-  <p><b>Alice bits:</b> {{ alice_bits }}</p>
-  <p><b>Alice bases:</b> {{ alice_bases }}</p>
+      <p class="text-center text-muted mb-3" style="font-size:0.95rem;">
+        Alice has prepared the qubits. When you click <b>Measure</b>, Bob will randomly choose
+        measurement bases and measure them.<br>
+        The results for both <b>No Eve</b> and <b>With Eve</b> will then be displayed.
+      </p>
 
-  <form method="post" action="{{ url_for('receive') }}">
-    <button class="btn btn-success">Measure (Bob) →</button>
-    <a class="btn btn-link" href="{{ url_for('alice') }}">Back</a>
-  </form>
+      <div class="text-center mb-3" style="font-size:0.95rem; color:#343d45;">
+        <p><b>Alice bits:</b> {{ alice_bits }}</p>
+        <p><b>Alice bases:</b> {{ alice_bases }}</p>
+      </div>
+
+      <form method="post" action="{{ url_for('receive') }}">
+        <div class="d-flex justify-content-center gap-3 mt-4">
+          <button class="btn btn-success px-5 py-2"
+                  style="background:#343d45; border:none; font-weight:500;">
+            Measure (Bob) →
+          </button>
+          <a class="btn btn-outline-dark px-5 py-2"
+             href="{{ url_for('alice') }}"
+             style="border-color:#343d45; color:#343d45; font-weight:500;">
+            Back
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

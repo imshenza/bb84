@@ -1,5 +1,4 @@
 def caesar_encrypt(plaintext, key_bits):
-    """Shift based on sum(key_bits) % 26"""
     if not key_bits:
         shift = 0
     else:
@@ -13,7 +12,6 @@ def caesar_encrypt(plaintext, key_bits):
         else:
             out.append(ch)
     return "".join(out)
-
 
 def caesar_decrypt(ciphertext, key_bits):
     if not key_bits:

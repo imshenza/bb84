@@ -1,19 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-  <h4>Alice — Send Encrypted Message (using agreed key)</h4>
-  <p><b>Agreed sifted key (Alice, no Eve):</b> {{ alice_key }}</p>
-  <p class="small">Encryption = Caesar shift by sum(key) % 26</p>
+  <div class="d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card p-5 shadow-lg" style="width: 550px; background: #fff; border-top: 5px solid #343d45;">
+      <h4 class="text-center mb-4" style="color:#343d45; font-weight:600;">Alice — Send Encrypted Message</h4>
 
-  <form method="post" action="{{ url_for('message_send') }}">
-    <div class="mb-2">
-      <input class="form-control" type="text" name="plaintext" placeholder="Enter message to send" required>
+      <p class="text-center mb-3">
+        <b>Agreed sifted key (Alice, no Eve):</b> 
+        <span style="color:#343d45;">{{ alice_key }}</span>
+      </p>
+      <p class="text-center text-muted small mb-4">
+        Encryption = Caesar shift by sum(key) % 26
+      </p>
+
+      <form method="post" action="{{ url_for('message_send') }}">
+        <div class="mb-4 text-center">
+          <input class="form-control text-center mx-auto"
+                 type="text"
+                 name="plaintext"
+                 placeholder="Enter your secret message"
+                 required
+                 style="width: 90%; padding: 12px; font-size: 1rem; border:2px solid #343d45; border-radius:8px; color:#333;">
+        </div>
+
+        <!-- Buttons side by side -->
+        <div class="d-flex justify-content-center gap-3 mt-3">
+          <button class="btn btn-success px-5 py-2"
+                  style="background:#343d45; border:none; font-weight:500;">
+            Encrypt & Send to Bob
+          </button>
+          <a class="btn btn-outline-dark px-5 py-2" 
+             href="{{ url_for('results') }}" 
+             style="border-color:#343d45; color:#343d45; font-weight:500;">
+            Back to Results
+          </a>
+        </div>
+      </form>
+
+  
     </div>
-    <button class="btn btn-success">Encrypt & Send to Bob</button>
-    <a class="btn btn-link" href="{{ url_for('results') }}">Back to results</a>
-  </form>
-
-  {% if session.ciphertext %}
-    <hr>
-    <p><b>Last ciphertext sent:</b> {{ session.ciphertext }}</p>
-  {% endif %}
+  </div>
 {% endblock %}

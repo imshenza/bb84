@@ -1,19 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-  <h4>Alice — Prepare & Send Qubits</h4>
-  <form method="post" action="{{ url_for('alice') }}">
-    <div class="mb-3">
-      <label class="form-label">Number of qubits to send:</label>
-      <input class="form-control w-25" type="number" name="num_bits" value="8" min="2" max="128">
-    </div>
-    <button class="btn btn-primary">Send Qubits →</button>
-    <a class="btn btn-link" href="{{ url_for('restart') }}">Restart</a>
-  </form>
+  <div class="d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card p-5 shadow-lg" style="width: 550px; background:#fff; border-top:5px solid #343d45;">
+      <h4 class="text-center mb-4" style="color:#343d45; font-weight:600;">
+        Alice — Prepare & Send Qubits
+      </h4>
 
-  {% if session.alice_bits %}
-    <hr>
-    <h6>Last prepared (preview)</h6>
-    <p><b>Bits:</b> {{ session.alice_bits }}</p>
-    <p><b>Bases:</b> {{ session.alice_bases }}</p>
-  {% endif %}
+      <form method="post" action="{{ url_for('alice') }}">
+        <div class="mb-4 text-center">
+          <label class="form-label mb-2" style="font-weight:500; color:#343d45;">
+            Number of qubits to send:
+          </label>
+          <input class="form-control text-center mx-auto"
+                 type="number"
+                 name="num_bits"
+                 value="10"
+                 min="10"
+                 max="1000"
+                 required
+                 style="width: 60%; padding: 12px; font-size:1rem; border:2px solid #343d45; border-radius:8px; color:#333;">
+        </div>
+
+        <!-- Buttons side by side -->
+        <div class="d-flex justify-content-center gap-3 mt-3">
+          <button class="btn btn-success px-5 py-2"
+                  style="background:#343d45; border:none; font-weight:500;">
+            Send Qubits →
+          </button>
+          <a class="btn btn-outline-dark px-5 py-2"
+             href="{{ url_for('restart') }}"
+             style="border-color:#343d45; color:#343d45; font-weight:500;">
+            Restart
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

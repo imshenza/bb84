@@ -1,16 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-  <h4>Bob — Receive & Decrypt Message</h4>
+  <div class="d-flex justify-content-center align-items-center" style="min-height:80vh;">
+    <div class="card p-5 shadow-lg" style="width: 550px; background:#fff; border-top:5px solid #343d45;">
+      <h4 class="text-center mb-4" style="color:#343d45; font-weight:600;">
+        Bob — Receive & Decrypt Message
+      </h4>
 
-  {% if ciphertext %}
-    <p><b>Ciphertext (received):</b> {{ ciphertext }}</p>
-    <p><b>Decrypted (Bob using his sifted key):</b> {{ decrypted }}</p>
-  {% else %}
-    <p>No message has been sent yet. Go back and send a message.</p>
-  {% endif %}
+      {% if ciphertext %}
+        <div class="text-center mb-4" style="font-size:0.95rem; color:#343d45;">
+          <p><b>Ciphertext (received):</b> {{ ciphertext }}</p>
+          <p><b>Decrypted (Bob using his sifted key):</b> {{ decrypted }}</p>
+        </div>
+      {% else %}
+        <p class="text-center text-muted">No message has been sent yet.<br>
+           Please go back and send a message first.</p>
+      {% endif %}
 
-  <div class="mt-3">
-    <a class="btn btn-link" href="{{ url_for('results') }}">Back to results</a>
-    <a class="btn btn-link" href="{{ url_for('restart') }}">Restart whole simulation</a>
+      <div class="d-flex justify-content-center gap-3 mt-4">
+        <a class="btn btn-outline-dark px-4 py-2"
+           href="{{ url_for('results') }}"
+           style="border-color:#343d45; color:#343d45; font-weight:500;">
+          Back to Results
+        </a>
+        <a class="btn btn-success px-4 py-2"
+           href="{{ url_for('restart') }}"
+           style="background:#343d45; border:none; font-weight:500;">
+          Restart Simulation
+        </a>
+      </div>
+    </div>
   </div>
 {% endblock %}
